@@ -10,8 +10,12 @@ class MainAdsController extends Controller
 {
     public function index()
     {
-        $ads = ApiAd::all();
-        $data = ShowAdsService::getAds($ads);
+        $data   = [];
+        $ads    = ApiAd::all();
+
+        if(!$ads->isEmpty()) {
+            $data   = ShowAdsService::getAds($ads);
+        }
 
         return view('ads', compact('data'));
     }
